@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <head> 
+        <meta charset="utf-8"/>
+        <title>Calculadora de MRU</title> 
+        <link rel="stylesheet" href="style.css">
+    
+    </head>
+
+<body>
+</body>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de MRU</title>
+    <style>
+            
+        #calcular {
+            background-color: #00ff62;
+            color: white;
+            border :3px solid #1d1d1d;
+            padding: 2px 15px;
+            
+        }
+        
+
+        #borrar {
+            background-color: red;
+            color: white;
+            border :3px solid #1d1d1d;
+            padding: 2px 15px;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        #variable-label {
+            font-family: Arial;
+            font-size: 15px;
+            color: #000000;
+        }
+
+        select {
+            width: 150px;
+        }
+
+        .input-container {
+            text-align: left;
+            margin: 0 auto;
+            width: 400px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-container label,
+        .input-container input {
+            flex: 1;
+            margin: 10px;
+            border :1px solid #2e04fd;
+            margin-bottom: 12px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="container">Calculadora de MRU</h1>
+    <div id="container">
+        <h2>
+            <label id="variable-label" for="variable">Seleccione la variable que desea calcular:</label>
+            <select id="variable">
+                <option value="distancia">Calcular distancia</option>
+                <option value="velocidad">Calcular velocidad</option>
+                <option value="tiempo">Calcular tiempo</option>
+            </select>
+        </h2>
+    </div>
+
+    <div class="input-container" id="input2">
+        <label for="velocidad">Velocidad (m/s): </label>
+        <input type="number" id="velocidad" step="0.01">
+    </div>
+
+    <div class="input-container" id="input1">
+        <label for="distancia">Distancia (metros): </label>
+        <input type="number" id="distancia" step="0.01">
+    </div>
+
+    <div class="input-container" id="input3">
+        <label for="tiempo">Tiempo (segundos): </label>
+        <input type="number" id="tiempo" step="0.01">
+    </div><br><br>
+
+    <div id="container">
+        <button id="calcular" onclick="calcularMRU()">Calcular</button>
+        <button id="borrar" onclick="borrarValores()">Borrar</button>
+    </div>
+
+    <p id="resultado">
+        <style>
+     .centrar-parrago {
+      text-align: center; /* Centra el texto horizontalmente */
+    }
+        </style>
+    </p>  <style>
+        .centrar-parrago {
+         text-align: center; /* Centra el texto horizontalmente */
+       }
+           </style>
+
+    <p id="desarrollo">
+        <style>
+            .centrar-parrago {
+             text-align: center; /* Centra el texto horizontalmente */
+           }
+               </style>
+    </p>
+    <style>
+        .centrar-parrago {
+         text-align: center; /* Centra el texto horizontalmente */
+       }
+           </style>
+    <script>
+   
+  
+        function calcularMRU() {
+            const variable = document.getElementById("variable").value;
+            const resultado = document.getElementById("resultado");
+            const desarrollo = document.getElementById("desarrollo");
+            
+            const velocidad = parseFloat(document.getElementById("velocidad").value);
+            const distancia = parseFloat(document.getElementById("distancia").value);
+            const tiempo = parseFloat(document.getElementById("tiempo").value);
+
+            if (variable === "distancia") {
+                const d = velocidad * tiempo;
+                resultado.textContent = `La distancia es ${d} metros.`;
+                desarrollo.textContent = `Desarrollo: D = V * t = ${velocidad} m/s * ${tiempo} s = ${d} metros.`;
+            } else if (variable === "velocidad") {
+                const v = distancia / tiempo;
+                resultado.textContent = `La velocidad es ${v} m/s.`;
+                desarrollo.textContent = `Desarrollo: V = D / t = ${distancia} metros / ${tiempo} s = ${v} m/s.`;
+            } else if (variable === "tiempo") {
+                const t = distancia / velocidad;
+                resultado.textContent = `El tiempo es ${t} segundos.`;
+                desarrollo.textContent = `Desarrollo: t = D / V = ${distancia} metros / ${velocidad} m/s = ${t} segundos.`;
+            }
+        }
+
+
+        function borrarValores() {
+            document.getElementById("velocidad").value = "";
+            document.getElementById("distancia").value = "";
+            document.getElementById("tiempo").value = "";
+            document.getElementById("resultado").textContent = "";
+            document.getElementById("desarrollo").textContent = "";
+        }
+
+        document.getElementById("variable").addEventListener("change", function() {
+            const variable = document.getElementById("variable").value;
+            const input1 = document.getElementById("input1");
+            const input2 = document.getElementById("input2");
+            const input3 = document.getElementById("input3");
+
+            input1.style.display = variable === "distancia" ? "none" : "block";
+            input2.style.display = variable === "velocidad" ? "none" : "block";
+            input3.style.display = variable === "tiempo" ? "none" : "block";
+        });
+    </script>
+</body>
